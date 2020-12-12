@@ -31,7 +31,7 @@ class DoublePendulumKinematicsDataset(Dataset):
 
 
     def __len__(self):
-        return 20000
+        return 40000
 
 class Net(nn.Module):
     def __init__(self, l1: float, l2: float):
@@ -47,9 +47,8 @@ class Net(nn.Module):
         self.fc3 = nn.Linear(128, 64)
         self.relu3 = nn.ReLU()
         self.fc4 = nn.Linear(64, 2)
-        self.relu4 = nn.ReLU()
 
-        self.seq = nn.Sequential(self.fc1, self.relu1, self.fc2, self.relu2, self.fc3, self.relu3, self.fc4, self.relu4)
+        self.seq = nn.Sequential(self.fc1, self.relu1, self.fc2, self.relu2, self.fc3, self.relu3, self.fc4)
 
     def forward(self, input):
         x = input
@@ -86,6 +85,7 @@ def eval(dataloader, net):
             num_samples += input.size(0)
 
             progress_bar.next()
+
         progress_bar.finish()
 
         eval_loss /= num_samples
