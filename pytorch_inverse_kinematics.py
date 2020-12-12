@@ -41,11 +41,11 @@ class Net(nn.Module):
         self.l2 = l2
 
         self.fc1 = nn.Linear(2, 64)
-        self.relu1 = nn.ReLU()
+        self.relu1 = nn.LeakyReLU()
         self.fc2 = nn.Linear(64, 128)
-        self.relu2 = nn.ReLU()
+        self.relu2 = nn.LeakyReLU()
         self.fc3 = nn.Linear(128, 64)
-        self.relu3 = nn.ReLU()
+        self.relu3 = nn.LeakyReLU()
         self.fc4 = nn.Linear(64, 2)
 
         self.seq = nn.Sequential(self.fc1, self.relu1, self.fc2, self.relu2, self.fc3, self.relu3, self.fc4)
