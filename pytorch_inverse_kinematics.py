@@ -7,9 +7,9 @@ import torch.nn.functional as F
 import torch.optim as optim
 
 
-def forward_kinematics(l1: float, l2: float, phi: torch.Tensor):
-    x2 = torch.sin(phi[0]) * l1 + torch.sin(phi[1]) * l2
-    y2 = torch.cos(phi[0]) * l1 + torch.cos(phi[1]) * l2
+def forward_kinematics(l1: float, l2: float, theta: torch.Tensor):
+    x2 = torch.sin(theta[0]) * l1 + torch.sin(theta[1]) * l2
+    y2 = torch.cos(theta[0]) * l1 + torch.cos(theta[1]) * l2
 
     return torch.tensor([x2, y2])
 
@@ -21,11 +21,11 @@ class DoublePendulumKinematicsDataset(Dataset):
         self.l2 = l2
 
     def __getitem__(self, idx):
-        phi = -np.pi + torch.rand(size=(2, )) * np.pi
+        theta = -np.pi + torch.rand(size=(2, )) * np.pi
 
-        input = forward_kinematics(self.l1, self.l2, phi)
+        input = forward_kinematics(self.l1, self.l2, theta)
 
-        target = phi
+        target = theta
 
         # print("input", input)
         # print("target", target)
