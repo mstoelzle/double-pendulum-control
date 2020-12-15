@@ -120,7 +120,7 @@ if __name__ == "__main__":
 
             pred = net(input)
 
-            loss = F.l1_loss(pred, target)
+            loss = F.l1_loss(pred, target) + F.l1_loss(input=forward_kinematics(l1, l2, pred), target=input)
 
             if batch_idx % 100 == 0:
                 pass
