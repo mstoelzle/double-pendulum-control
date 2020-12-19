@@ -9,7 +9,7 @@ import torch.optim as optim
 
 def forward_kinematics(l1: float, l2: float, theta: torch.Tensor):
     x2 = torch.sin(theta[0]) * l1 + torch.sin(theta[1]) * l2
-    y2 = torch.cos(theta[0]) * l1 + torch.cos(theta[1]) * l2
+    y2 = -torch.cos(theta[0]) * l1 - torch.cos(theta[1]) * l2
 
     position = theta.new_zeros(size=theta.size())
     position[0], position[1] = x2, y2
